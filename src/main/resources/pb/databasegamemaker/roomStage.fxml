@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.geometry.Insets?>
+<VBox alignment="CENTER" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="pb.databasegamemaker.RoomStage">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+    </padding>
+
+    <HBox alignment="CENTER">
+        <Button text="Rooms" onAction="#changeRooms"/>
+        <Button text="Actions" onAction="#changeActions"/>
+        <Button text="Items" onAction="#changeItems"/>
+        <Button text="Item Locations" onAction="#changeLocations"/>
+        <Button text="Play" onAction="#changePlay"/>
+    </HBox>
+
+    <Label text="Rooms"/>
+    <Separator/>
+    <TableView fx:id="table" editable="true">
+        <columns>
+            <TableColumn text="ID" editable="false">
+                <cellValueFactory>
+                    <PropertyValueFactory property="id"/>
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="nameCol" text="Room name" onEditCommit="#editName">
+                <cellValueFactory>
+                    <PropertyValueFactory property="name"/>
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="sidesCol" text="Number of sides" onEditCommit="#editSides">
+                <cellValueFactory>
+                    <PropertyValueFactory property="sides"/>
+                </cellValueFactory>
+            </TableColumn>
+        </columns>
+    </TableView>
+    <Separator/>
+    <Label fx:id="result"/>
+    <HBox alignment="CENTER">
+        <Label text="Add a new room: "/>
+        <VBox alignment="CENTER">
+            <Label text="Room name"/>
+            <TextField fx:id="nameField"/>
+        </VBox>
+        <VBox alignment="CENTER">
+            <Label text="Number of sides"/>
+            <TextField fx:id="sidesField"/>
+        </VBox>
+        <Button text="Add Room" onAction="#add"/>
+    </HBox>
+    <HBox alignment="CENTER">
+        <Button text="Reload Data" onAction="#getData"/>
+        <Button text="Push Data" onAction="#pushData"/>
+        <Button text="Logout" onAction="#logout"/>
+    </HBox>
+</VBox>

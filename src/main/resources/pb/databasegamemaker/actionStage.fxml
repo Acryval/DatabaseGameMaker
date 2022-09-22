@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<VBox alignment="CENTER" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="pb.databasegamemaker.ActionStage">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+    </padding>
+
+    <HBox alignment="CENTER">
+        <Button text="Rooms" onAction="#changeRooms"/>
+        <Button text="Actions" onAction="#changeActions"/>
+        <Button text="Items" onAction="#changeItems"/>
+        <Button text="Item Locations" onAction="#changeLocations"/>
+        <Button text="Play" onAction="#changePlay"/>
+    </HBox>
+
+    <Label text="Actions"/>
+    <Separator/>
+    <TableView fx:id="table" editable="true">
+        <columns>
+            <TableColumn text="ID" editable="false">
+                <cellValueFactory>
+                    <PropertyValueFactory property="id"/>
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="actionCol" text="Action" onEditCommit="#editAction">
+                <cellValueFactory>
+                    <PropertyValueFactory property="action"/>
+                </cellValueFactory>
+            </TableColumn>
+        </columns>
+    </TableView>
+    <Separator/>
+    <Label fx:id="result"/>
+    <HBox alignment="CENTER">
+        <Label text="Add a new action: "/>
+        <VBox alignment="CENTER">
+            <Label text="Action"/>
+            <TextField fx:id="actionField"/>
+        </VBox>
+        <Button text="Add Action" onAction="#add"/>
+    </HBox>
+    <Separator/>
+    <HBox alignment="CENTER">
+        <Label text="Possible actions: "/>
+        <VBox alignment="CENTER_LEFT">
+            <Label text="call pb.move(room_id);"/>
+            <Label text="call pb.inv_add(item_id);"/>
+            <Label text="call pb.inv_rm(item_id);"/>
+            <Label text="call pb.spawn(item_id, room_id, side);"/>
+            <Label text="call pb.despawn(item_id, room_id);"/>
+            <Label text="call pb.say('message');"/>
+        </VBox>
+    </HBox>
+    <Separator/>
+    <HBox alignment="CENTER">
+        <Button text="Reload Data" onAction="#getData"/>
+        <Button text="Push Data" onAction="#pushData"/>
+        <Button text="Logout" onAction="#logout"/>
+    </HBox>
+</VBox>

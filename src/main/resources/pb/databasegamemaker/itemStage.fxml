@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.geometry.Insets?>
+<VBox alignment="CENTER" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="pb.databasegamemaker.ItemStage">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+    </padding>
+
+    <HBox alignment="CENTER">
+        <Button text="Rooms" onAction="#changeRooms"/>
+        <Button text="Actions" onAction="#changeActions"/>
+        <Button text="Items" onAction="#changeItems"/>
+        <Button text="Item Locations" onAction="#changeLocations"/>
+        <Button text="Play" onAction="#changePlay"/>
+    </HBox>
+
+    <Label text="Items registered"/>
+    <Separator/>
+    <TableView fx:id="table" editable="true">
+        <columns>
+            <TableColumn text="ID" editable="false">
+                <cellValueFactory>
+                    <PropertyValueFactory property="id"/>
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn text="Item name" fx:id="nameCol" onEditCommit="#editName">
+                <cellValueFactory>
+                    <PropertyValueFactory property="name"/>
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn text="onUse Action ID" fx:id="useActionCol" onEditCommit="#editUse">
+                <cellValueFactory>
+                    <PropertyValueFactory property="useAction"/>
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn text="onGo Action ID" fx:id="goActionCol" onEditCommit="#editGo">
+                <cellValueFactory>
+                    <PropertyValueFactory property="goAction"/>
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn text="Is grabable" fx:id="grabableCol" onEditCommit="#editGrab">
+                <cellValueFactory>
+                    <PropertyValueFactory property="grabable"/>
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn text="Use targetitem ID" fx:id="targetCol" onEditCommit="#editTarget">
+                <cellValueFactory>
+                    <PropertyValueFactory property="target"/>
+                </cellValueFactory>
+            </TableColumn>
+        </columns>
+    </TableView>
+    <Separator/>
+    <Label fx:id="result"/>
+    <HBox alignment="CENTER">
+        <Label text="Add a new item: "/>
+        <VBox alignment="CENTER">
+            <Label text="Item name"/>
+            <TextField fx:id="nameField"/>
+        </VBox>
+        <VBox alignment="CENTER">
+            <Label text="onUse action ID"/>
+            <TextField fx:id="useActionField"/>
+        </VBox>
+        <VBox alignment="CENTER">
+            <Label text="onGo action ID"/>
+                <TextField fx:id="goActionField"/>
+        </VBox>
+        <VBox alignment="CENTER">
+            <Label text="Is Grabable"/>
+            <CheckBox fx:id="grabableField"/>
+        </VBox>
+        <VBox alignment="CENTER">
+            <Label text="Target item ID"/>
+            <TextField fx:id="targetField"/>
+        </VBox>
+        <Button text="Add Item" onAction="#add"/>
+    </HBox>
+    <HBox alignment="CENTER">
+        <Button text="Reload Data" onAction="#getData"/>
+        <Button text="Push Data" onAction="#pushData"/>
+        <Button text="Logout" onAction="#logout"/>
+    </HBox>
+</VBox>
